@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Open Bulletin</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 2rem;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+  <p>Opening the bulletin…</p>
+  <p><a id="fallback" href="https://app.kppc.ca/bulletin">Continue in browser</a></p>
+  <script>
+    (function () {
+      var appUrl = "kppc://bulletin";
+      var webUrl = "https://app.kppc.ca/bulletin";
+
+      var t = setTimeout(function () {
+        window.location.replace(webUrl);
+      }, 1200);
+
+      document.getElementById("fallback").href = webUrl;
+
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) clearTimeout(t);
+      });
+
+      window.location.href = appUrl;
+    })();
+  </script>
+</body>
+
+</html>
